@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 @Deprecated
 public class DriveStraightDistance extends Command{
+	private static final double K_P = 0.05;
 	private double startDistance;
 	private double desiredDistance;
 	private double desiredSpeed;
@@ -16,20 +17,20 @@ public class DriveStraightDistance extends Command{
 		this.desiredDistance = distanceMeters;
 		this.desiredSpeed = speed;
 	}
+
 	protected void initialize() {
 		Robot.driveBase.setTalonsToClosedLoopSpeed();
 		startDistance = Robot.driveBase.leftFrontTalon.getPosition();
 		// Robot.driveTrain.getGyro().reset();
 		startAngle = Robot.driveBase.getRawAngle();
 	}
-    // Called repeatedly when this Command is scheduled to run
+
+	// Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	// double angle = Robot.driveTrain.getGyro().getAngle();
     	// Robot.driveTrain.arcadeDrive(-this.desiredSpeed, -angle*0.03);
     	Robot.driveBase.arcadeDrive(-this.desiredSpeed, correctAngle());
     }
-    
-    private static final double K_P = 0.05;
     
     private double correctAngle() {
     	double angle = Robot.driveBase.getRawAngle() - startAngle;

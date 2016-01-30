@@ -1,17 +1,14 @@
 package org.usfirst.frc.team1294.robot.subsystems;
 
-import edu.wpi.first.wpilibj.CANTalon;
-
 import org.usfirst.frc.team1294.robot.RobotMap;
 import org.usfirst.frc.team1294.robot.commands.TankDriveWithJoystick;
 
-import edu.wpi.first.wpilibj.AnalogGyro;
-import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.interfaces.Gyro;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 /**
  * An example subsystem.
@@ -22,7 +19,7 @@ public class DriveBase extends Subsystem {
 	public CANTalon leftBackTalon;
 	public CANTalon rightBackTalon;
 	public RobotDrive drive;
-	private Gyro gyro;
+	private ADXRS450_Gyro gyro;
 	
 	
 	
@@ -48,10 +45,11 @@ public class DriveBase extends Subsystem {
     	//set control mode for encoder talons
     	
     	drive = new RobotDrive(leftFrontTalon, rightBackTalon);
-    	AnalogGyro analogGyro = new AnalogGyro(0);
-    	gyro = analogGyro;
-    	
-    	LiveWindow.addSensor(this.getName(), "AnalogGyro", analogGyro);
+
+			gyro = new ADXRS450_Gyro(); // calibrated automatically in the constructor - must ensure that robot is stationary
+
+			// Automatically sent to LiveWindow in each object's constructor
+			// LiveWindow.addSensor(this.getName(), "AnalogGyro", analogGyro);
 //    	LiveWindow.addActuator("Drive", "Left Front", leftFrontTalon);
 //    	LiveWindow.addActuator("Drive", "Left Rear", leftBackTalon);
 //    	LiveWindow.addActuator("Drive", "Right Front", rightFrontTalon);
