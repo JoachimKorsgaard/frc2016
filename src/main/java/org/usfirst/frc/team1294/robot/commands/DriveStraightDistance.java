@@ -5,6 +5,9 @@ import org.usfirst.frc.team1294.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+/**
+ * @deprecated use {@link DrivePid} instead.
+ */
 @Deprecated
 public class DriveStraightDistance extends Command{
 	private static final double K_P = 0.05;
