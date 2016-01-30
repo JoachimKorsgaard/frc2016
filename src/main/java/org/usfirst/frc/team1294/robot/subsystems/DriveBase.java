@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 
 /**
  * An example subsystem.
@@ -19,11 +20,10 @@ public class DriveBase extends Subsystem {
 	public CANTalon leftBackTalon;
 	public CANTalon rightBackTalon;
 	public RobotDrive drive;
-	private ADXRS450_Gyro gyro;
-	
-	
-	
-    public DriveBase() {
+  private Gyro gyro;
+
+
+  public DriveBase() {
     	//encoders are on talon one and four
         // Set left feedback device and talon numbers
     	leftFrontTalon = new CANTalon(RobotMap.leftFrontTalon);
